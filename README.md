@@ -34,15 +34,9 @@ Thirdly, it does not represent the powerful environments most developers deal wi
 
 ## Looking for More?
 
-There are so many great playgrounds about I couldn't list them all if I tried. But I can point you to lists of lists, such as:
+There are so many great playgrounds about I couldn't list them all if I tried. But a great place that I go to start looking is uraimo's [curated list of awesome Swift playgrounds](https://github.com/uraimo/Awesome-Swift-Playgrounds) on GitHub, or you can search the official playgrounds that you can download straight in the app. I've also made another playground like this myself, explaining the basics of [procedural terrain generation](https://en.wikipedia.org/wiki/Scenery_generator), that you can find and download [here](https://github.com/TheMartianLife/WWDC-2018).
 
-* uraimo's [curated list of awesome Swift playgrounds](https://github.com/uraimo/Awesome-Swift-Playgrounds) on GitHub
-* TODO
-
-And if Swift isn't really your thing but you want to play around more with live coding environments, why not check out some of the ones that have been made for other programmig languages:
-
-* Jupyter Notebooks for Python, which you can play with online with Google's [Colaboratory](https://colab.research.google.com)
-* TODO
+And if Swift isn't really your thing but you want to play around more with live coding environments, why not check out some of the ones that have been made for other programmig languages. Probably the most popular one is Jupyter Notebooks for Python, which you can play with online for free with Google's [Colaboratory](https://colab.research.google.com) site.
 
 ## About the Author
 
