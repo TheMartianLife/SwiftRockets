@@ -60,6 +60,7 @@ struct Rocket: Trackable {
 	}
 
 	mutating func launch() {
+		print("Rocket launched! 🚀")
 		self.speed = 1.0
 		while fuelLevel > 0.0 {
 			self.altitude = self.altitude + 0.1
@@ -102,6 +103,7 @@ class CleanupDrone:  Projectile {
 	// from the Projectile class for free
 	
 	func deploy() {
+		print("Drone deployed! 🤖")
 		// if there is an object somewhere above the drone that it can target
 		if let targetedObject = nextObjectAbove(self) {
 			// and that target is dead

@@ -23,6 +23,7 @@ struct Rocket: Trackable {
 	}
 
 	mutating func launch() {
+		print("Rocket launched! 🚀")
 		self.speed = 1.0
 		while fuelLevel > 0.0 {
 			self.altitude = self.altitude + 0.1
@@ -41,6 +42,11 @@ struct Rocket: Trackable {
 }
 
 let satellites: [OrbitalObject: Bool] = [.sputnik : false, .explorer : false, .vanguard : false, .tiros : false, .landsat: false, .hubble: true, .compton : false, .iss: true, .chandra: true, .noaa15: true, .spitzer: true]
+
+func isDead(_ object: OrbitalObject) -> Bool {
+	return !(satellites[object] ?? true)
+}
+
 func hasCollided<T: Trackable>(_ missile: T, at altitude: Double) -> OrbitalObject? {
 	let obstructions = LiveView.obstructionsWithObjects(Array(satellites.keys), at: missile.position)
 	let destructions = queuedDestructions.map { $0.target }
@@ -125,6 +131,7 @@ class Missile: Projectile {
 
 	// now we don't have to say 'mutating' on functions that change things
 	func fire() {
+		print("Missile fired! 💣")
 		self.speed = 1.0
 		// we will use a provided function to check whether something is at
 		// the missile's position and return its current collision
@@ -144,6 +151,11 @@ class Missile: Projectile {
 			// this means the value wasn't nil
 			// so we can use a premade function to destroy the object we hit
 			destroy(collidedObject, with: self)
+			print("Missile hit and destroyed \(collidedObject)")
+			// check if that was a bad thing to hit using a provided function
+			if !isDead(collidedObject) {
+				print("You have destroyed critical infrastructure 😧")
+			}
 		} else {
 			// this means the value was nil so we missed
 			print("Missile missed at \(position)! ❌")

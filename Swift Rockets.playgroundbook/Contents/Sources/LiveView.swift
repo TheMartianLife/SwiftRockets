@@ -45,12 +45,8 @@ public final class LiveView {
 		let possibleCollision = LiveView.obstructionsOnPath(at: object.position).first(where: { !ignoring.contains($0) })
 		var newAltitude = object.altitude
 		var lifetime: Double? = nil
-		switch type {
-			case .drone: lifetime = LaunchScene.animationDuration(for: newAltitude)
-				print("Drone launched! 🤖")
-			case .missile: print("Missile launched! 💣")
-			case .rocketlaunch, .rocketshield: print("Rocket launched! 🚀")
-			default: break
+		if type == .drone {
+			lifetime = LaunchScene.animationDuration(for: newAltitude)
 		}
 		if let collision = possibleCollision {
 			if type == .rocketlaunch || type == .rocketshield {
@@ -60,7 +56,6 @@ public final class LiveView {
 				LiveView.shared.scene.crash(delay: lifetime!)
 			} else if type == .missile {
 				newAltitude = altitude ?? collision.altitude
-				print("Hit and removed \(collision)")
 				lifetime = LaunchScene.animationDuration(for: newAltitude)
 				LiveView.shared.scene.collision(at: object.position, altitude: newAltitude + 0.1, delay: lifetime!)
 			}

@@ -88,6 +88,7 @@ struct Rocket {
 	// (like change its altitude or fuel level)
 	// we have to use the 'mutating' keyword
 	mutating func launch() {
+		print("Rocket launched! 🚀")
 		// we are moving now
 		self.speed = 1.0
 		// to keep doing something we can use a 'while' keyword

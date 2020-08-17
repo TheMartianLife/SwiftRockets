@@ -117,6 +117,7 @@ not be just about to change. So instead, it gets locked in that function like a 
 */
 extension Rocket {
 	mutating func launch(with shield: inout Shield) {
+		print("Rocket launched! 🚀")
 		self.speed = 1.0
 		while fuelLevel > 0.0 {
 			self.altitude += 0.1
@@ -125,6 +126,7 @@ extension Rocket {
 			// has been made for you
 			if let collision = hasCollided(self, at: altitude) {
 				// if we hit something and we still have shield, we're okay
+				// (here the ! means "not", so "if shield is not depleted")
 				if !shield.isDepleted {
 					print("Deflecting \(collision) near miss")
 					deflect(collision)
