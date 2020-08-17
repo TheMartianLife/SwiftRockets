@@ -21,15 +21,6 @@ struct Rocket: Trackable {
 		self.position = 0.5
 		self.speed = 0.0
 	}
-
-	mutating func launch() {
-		self.speed = 1.0
-		while fuelLevel > 0.0 {
-			self.altitude = self.altitude + 0.1
-			self.fuelLevel = self.fuelLevel - 1.0
-		}
-		self.speed = 0.0
-	}
 	
 	mutating func adjustPosition(_ direction: Direction, by amount: Double) {
 		if direction == .left {
@@ -39,7 +30,7 @@ struct Rocket: Trackable {
 		}
 	}
 }
-let satellites: [OrbitalObject: Bool] = [.sputnik : false, .explorer : false, .vanguard : false, .tiros : false, .landsat: false, .hubble: true, .compton : false, .iss: true, .chandra: true, .noaa15: true, .spitzer: true]
+let satellites: [OrbitalObject: Bool] = [.sputnik : false, .explorer : false, .vanguard : false, .tiros : false, .landsat: false, .hubble: true, .compton : false, .iss: true]
 func hasCollided<T: Trackable>(_ missile: T, at altitude: Double) -> OrbitalObject? {
 	let obstructions = LiveView.obstructionsWithObjects(Array(satellites.keys), at: missile.position).filter { !dodged.contains($0)}
 	let obstruction = obstructions.first
@@ -130,7 +121,7 @@ extension Rocket {
 		while fuelLevel > 0.0 {
 			self.altitude += 0.1
 			self.fuelLevel -= 1.0
-			// check if we have it something, using a function that
+			// check if we have hit something, using a function that
 			// has been made for you
 			if let collision = hasCollided(self, at: altitude) {
 				// if we hit something and we still have shield, we're okay
@@ -138,8 +129,13 @@ extension Rocket {
 					print("Deflecting \(collision) near miss")
 					deflect(collision)
 					shield.takeHit()
+					// if that was the last hit we could take, let us know
+					if shield.isDepleted {
+						print("Shield is now depleted")
+					}
 				} else {
 					// otherwise, we're out of luck 😕
+					print("Collided with \(collision) and crashed 💥")
 					crash(self)
 				}
 			}
@@ -152,7 +148,7 @@ var rocket = Rocket(name: "My Rocket")
 rocket.adjustPosition(.right, by: 0.15)
 var shield = Shield()
 // because our shield is an inout, we pass a reference to the shield instead
-// of the shiel itself (which is easy, becaue you jusy put a '&' at the front)
+// of the shield itself (which is easy, becaue you just put a '&' at the front)
 rocket.launch(with: &shield)
 /*:
 Huzzah!

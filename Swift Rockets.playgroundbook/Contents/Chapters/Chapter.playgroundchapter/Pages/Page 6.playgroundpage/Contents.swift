@@ -114,6 +114,7 @@ class CleanupDrone:  Projectile {
 	func grabSatellite(_ satellite: OrbitalObject) {
 		self.altitude = satellite.altitude
 		self.satellite = satellite
+		print("Grabbed \(satellite) 🦾")
 		remove(satellite)
 	}
 }

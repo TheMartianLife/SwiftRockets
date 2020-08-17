@@ -80,7 +80,7 @@ Fast forward to now. The year is 2020. And there is junk *everywhere* in orbit.
 ![A computer-generated image of objects in Earth orbit that were being tracked by NASA by 2005](junk.jpg)
 *A computer-generated image of objects in Earth orbit that were being tracked by NASA by 2005*
 
-Back to our little simulated rocketship. This time we aren't going to add to the `Rocket` type, because we already have all the behaviours we need from our rocket. However, because there are too many satellites to get past with just dodging, we will make some other objects that can help us on our way.
+Back to our little simulated rocketship. This time we aren't going to add to the `Rocket` type, because we already have all the behaviours we need from our rocket. However, because there are too many satellites to get past with just dodging or weak shields, we will make some other objects that can help us on our way.
 */
 // more satellites!
 let chandra = OrbitalObject.chandra.image

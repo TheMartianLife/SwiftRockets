@@ -2,7 +2,7 @@ import SpriteKit
 import UIKit
 
 
-public enum OrbitalObject: Trackable {
+public enum OrbitalObject: Trackable, CustomStringConvertible {
 	
 	case chandra, compton, debris, drone, explorer, hubble, iss, landsat
 	case missile, noaa15, rocket, rocketlaunch, rocketshield, spitzer, sputnik, tiros, vanguard
@@ -13,6 +13,24 @@ public enum OrbitalObject: Trackable {
 	
 	public var sprite: SKSpriteNode {
 		return SKSpriteNode(imageNamed: self.filename)
+	}
+	
+	public var description: String {
+		switch self {
+			case .chandra: return "The Chandra X-ray Observatory"
+			case .compton: return "The Compton Gamma Ray Observatory"
+			case .debris: return "debris field"
+			case .explorer: return "Explorer 1"
+			case .hubble: return "The Hubble Space Telescope"
+			case .iss: return "The International Space Station"
+			case .landsat: return "Landsat 1"
+			case .noaa15: return "NOAA-15"
+			case .spitzer: return "The Spitzer Space Telescope"
+			case .sputnik: return "Sputnik"
+			case .tiros: return "TIROS-1"
+			case .vanguard: return "Vanguard 1"
+			default: return "orbital object"
+		}
 	}
 	
 	public var filename: String {
